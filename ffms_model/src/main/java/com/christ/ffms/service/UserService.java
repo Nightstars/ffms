@@ -38,4 +38,14 @@ public class UserService {
         destory();
         return users;
     }
+    public Boolean addUser(User user) throws IOException {
+        init();
+        int status=userDao.insertUser(user);
+        destory();
+        if(status>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

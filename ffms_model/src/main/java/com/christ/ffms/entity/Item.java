@@ -8,7 +8,7 @@ public class Item {
     private int type;
     private String name;
     private Item pItem;
-    private List<Item> items=new ArrayList<>();
+    private List<Item> items=new ArrayList<Item>();
 
     public int getId() {
         return id;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.christ.ffms.dao.UserDao">
+    <insert id="insertUser" parameterType="com.christ.ffms.entity.User">
+        insert users(name,realname,pwd) values(#{name},#{realname},#{pwd})
+    </insert>
+    <delete id="deleteUser" parameterType="int">
+        delete from users where id=#{id}
+    </delete>
+    <update id="modifyUser" parameterType="com.christ.ffms.entity.User">
+        update users set name= #{name},realname=#{realname},pwd=#{pwd} where id=#{id}
+    </update>
+    <select id="selectUserById" parameterType="int" resultType="com.christ.ffms.entity.User">
+        select * from users where id=#{id}
+    </select>
+    <select id="selectUserByNameAndPassword" parameterType="com.christ.ffms.entity.User" resultType="com.christ.ffms.entity.User">
+        select * from users where name=#{name} and pwd=#{pwd}
+    </select>
+   <select id="selectAllUser" resultType="com.christ.ffms.entity.User">
+        select * from users
+    </select>
+</mapper>

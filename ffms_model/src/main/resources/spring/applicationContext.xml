@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <context:component-scan base-package="com.christ.spring_jdbc_mybatis"></context:component-scan>
+    <context:property-placeholder location="db/db.properties"></context:property-placeholder>
+    <tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${driver}"></property>
+        <property name="jdbcUrl" value="${url}"></property>
+        <property name="user" value="${user}"></property>
+        <property name="password" value="${password}"></property>
+        <!-- 初始时创建的联接对象个数 -->
+        <property name="initialPoolSize" value="10"></property>
+        <!-- 最大空闲时间，单位为秒 -->
+        <property name="maxIdleTime" value="30"></property>
+        <!-- 最大联接对象个数 -->
+        <property name="maxPoolSize" value="100"></property>
+        <!-- 最小联接对象个数 -->
+        <property name="minPoolSize" value="10"></property>
+        <!-- 如果连接池连接已经用完了，每次增加多少个连接 -->
+        <property name="acquireIncrement" value="4"></property>
+    </bean>
+    <bean id="jdbcTemple" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="mybatisConf1.xml"></property>
+    </bean>
+    <bean id="userDaoMybatis" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+        <property name="mapperInterface" value="com.christ.spring_jdbc_mybatis.dao.UserDaoMybatis"></property>
+    </bean>
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+     </bean>
+</beans>
