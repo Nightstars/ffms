@@ -1,14 +1,19 @@
 package com.christ.ffms.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Component
 public class Account {
     private int id;
     private Date date;
     private BigDecimal amount;
     private String remark;
     private User user;
+    @Autowired
     private Item item;
 
     public int getId() {
@@ -59,6 +64,9 @@ public class Account {
         this.item = item;
     }
 
+    public Account(){
+
+    }
     public Account(int id, Date date, BigDecimal amount, String remark, User user, Item item) {
         this.id = id;
         this.date = date;

@@ -1,8 +1,11 @@
 package com.christ.ffms.entity;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class Item {
     private int id;
     private int type;

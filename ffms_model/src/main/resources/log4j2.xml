@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- status:log4j的本身日志输出级别  -->
-<Configuration status="DEBUG">
+<Configuration status="debug">
 	<Appenders>
 		<!-- target: SYSTEM_OUT 或 SYSTEM.ERR -->
 		<Console  name="Console" target="SYSTEM_OUT">

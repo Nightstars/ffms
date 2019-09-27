@@ -1,5 +1,8 @@
 package com.christ.ffms.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
     private  int id;
     private String name;
@@ -37,7 +40,9 @@ public class User {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
+    public User(){
 
+    }
     public User(String name, String realname, String pwd) {
         this.name = name;
         this.realname = realname;

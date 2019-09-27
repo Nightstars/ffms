@@ -2,46 +2,36 @@ package com.christ.ffms.service;
 
 import com.christ.ffms.dao.UserDao;
 import com.christ.ffms.entity.User;
-import com.christ.ffms.util.MybatisUtil;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.List;
 
+@Data
+@Service
 public class UserService {
-    UserDao userDao=null;
-    SqlSession sqlSession=null;
-    SqlSessionFactory sqlSessionFactory=null;
-    public void init() throws IOException {
-        sqlSessionFactory=MybatisUtil.getSqlSessionFactory();
-        sqlSession=sqlSessionFactory.openSession();
-        userDao=sqlSession.getMapper(UserDao.class);
-    }
-    public void destory(){
-        sqlSession.commit();
-        sqlSession.close();
-    }
-    public boolean login(User user) throws IOException {
-        init();
+    @Autowired
+    UserDao userDao;
+    @Transactional(readOnly = false, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
+    public boolean login(User user){
         User userInfo=userDao.selectUserByNameAndPassword(user);
-        destory();
         if(!(userInfo==null)){
             return true;
         }else{
             return false;
         }
     }
-    public List<User> ListUser() throws IOException {
-        init();
+    @Transactional(readOnly = false, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
+    public List<User> ListUser(){
         List<User> users=userDao.selectAllUser();
-        destory();
         return users;
     }
-    public Boolean addUser(User user) throws IOException {
-        init();
+    @Transactional(readOnly = false, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
+    public Boolean addUser(User user){
         int status=userDao.insertUser(user);
-        destory();
         if(status>0){
             return true;
         }else {

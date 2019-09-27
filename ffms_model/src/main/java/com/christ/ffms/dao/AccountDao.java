@@ -1,10 +1,12 @@
 package com.christ.ffms.dao;
 
 import com.christ.ffms.entity.Account;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
 
+@Repository
 public interface AccountDao {
     /*void saveAccount(Account account);
     void updateAccount(Account account);

@@ -1,9 +1,11 @@
 package com.christ.ffms.dao;
 
 import com.christ.ffms.entity.Item;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ItemDao {
     /*void saveItem(Item item);
     void updateItem(Item item);

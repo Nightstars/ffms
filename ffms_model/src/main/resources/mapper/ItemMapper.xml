@@ -9,7 +9,7 @@
         <include refid="selectItem"></include>
         where i1.id=#{id}
     </select>
-    <resultMap id="ItemResulatMap" type="Item">
+    <resultMap id="ItemResulatMap" type="com.christ.ffms.entity.Item">
         <id property="id" column="i1id"></id>
         <result property="type" column="i1type"></result>
         <result property="name" column="i1name"></result>

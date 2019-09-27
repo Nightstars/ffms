@@ -14,7 +14,7 @@
         <result property="date" column="aadate"></result>
         <result property="amount" column="aamount"></result>
         <result property="remark" column="aremark"></result>
-        <association property="user" javaType="User" column="user_id">
+        <association property="user" javaType="com.christ.ffms.entity.User" column="user_id">
             <id property="id" column="uid"></id>
             <result property="name" column="uname"></result>
             <result property="realname" column="urealname"></result>
