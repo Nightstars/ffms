@@ -1,6 +1,7 @@
 package com.christ.ffms.dao;
 
 import com.christ.ffms.entity.Account;
+import com.christ.ffms.entity.Search;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -8,11 +9,10 @@ import java.util.List;
 
 @Repository
 public interface AccountDao {
-    /*void saveAccount(Account account);
-    void updateAccount(Account account);
-    void deleteAccount(int id);
-    void deleteAccount(String[] ids);*/
     Account getAccountById(int id);
-    /*List<Account> getPagesAccounts(int pageNum,int pageSize);
-    List<Account> getPagesAccountsByDate(int pageNum, int pageSize, Date startDate,Date endDate);*/
+    public List<Account> getAllAccount();
+    public void deleteAccount(Integer id);
+    public void addAccount(Account account);
+    public void editAccount(Account account);
+    public List<Account> getAccountByDate(Search search);
 }

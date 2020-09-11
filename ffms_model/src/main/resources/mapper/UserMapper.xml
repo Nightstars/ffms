@@ -20,4 +20,10 @@
    <select id="selectAllUser" resultType="com.christ.ffms.entity.User">
         select * from users
     </select>
+    <delete id="deleteUserArr">
+        delete from users where id in
+        <foreach collection="array" item="arr" index="index" open="("   close=")" separator=",">
+            #{arr}
+        </foreach>
+    </delete>
 </mapper>

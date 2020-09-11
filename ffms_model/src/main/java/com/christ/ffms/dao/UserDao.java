@@ -13,4 +13,5 @@ public interface UserDao {
     User selectUserByNameAndPassword(User user);
     User selectUserById(int id);
     List<User> selectAllUser();
+    public void deleteUserArr(String[] arr);
 }

@@ -9,7 +9,7 @@
         <include refid="selectItem"></include>
         where i1.id=#{id}
     </select>
-    <resultMap id="ItemResulatMap" type="Item">
+    <resultMap id="ItemResulatMap" type="com.christ.ffms.entity.Item">
         <id property="id" column="i1id"></id>
         <result property="type" column="i1type"></result>
         <result property="name" column="i1name"></result>
@@ -24,4 +24,41 @@
             <result property="name" column="i3name"></result>
         </collection>
     </resultMap>
+    <select id="getAllItem" resultMap="ItemResulatMap">
+        <include refid="selectItem"></include>
+    </select>
+    <update id="updateItem" parameterType="com.christ.ffms.entity.Item">
+        update items set type=#{type},name=#{name} where id=#{id}
+    </update>
+    <delete id="deletePItem" parameterType="com.christ.ffms.entity.Item">
+        delete from items where pid=#{id}
+    </delete>
+    <delete id="deleteCItem" parameterType="com.christ.ffms.entity.Item">
+        delete from items where id=#{id}
+    </delete>
+    <delete id="deletePItems">
+        delete from items where pid in
+        <foreach collection="array" item="arr" index="index" open="("   close=")" separator=",">
+            #{arr}
+        </foreach>
+    </delete>
+    <delete id="deleteCItems">
+        delete from items where id in
+        <foreach collection="array" item="arr" index="index" open="("   close=")" separator=",">
+            #{arr}
+        </foreach>
+    </delete>
+    <insert id="saveCItem" parameterType="com.christ.ffms.entity.Item">
+        insert into items(type,name,pid) values(#{type},#{name},#{PId})
+    </insert>
+    <insert id="savePItem" parameterType="com.christ.ffms.entity.Item">
+        insert into items(type,name) values(#{type},#{name})
+    </insert>
+    <select id="getPitemById" parameterType="integer" resultMap="ItemResulatMap">
+        <include refid="selectItem"></include>
+        where i1.type =#{id} and i1.pid is null
+    </select>
+    <select id="getPitems">
+        <include refid="selectItem"></include> where i1.pid is null
+    </select>
 </mapper>

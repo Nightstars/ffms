@@ -15,7 +15,7 @@ import java.util.List;
 public class UserService {
     @Autowired
     UserDao userDao;
-    @Transactional(readOnly = false, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
+    @Transactional(readOnly = true, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
     public boolean login(User user){
         User userInfo=userDao.selectUserByNameAndPassword(user);
         if(!(userInfo==null)){
@@ -24,7 +24,7 @@ public class UserService {
             return false;
         }
     }
-    @Transactional(readOnly = false, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
+    @Transactional(readOnly = true, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
     public List<User> ListUser(){
         List<User> users=userDao.selectAllUser();
         return users;
@@ -37,5 +37,31 @@ public class UserService {
         }else {
             return false;
         }
+    }
+    @Transactional(readOnly = false, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
+    public Boolean modifyUser(User user){
+        int status=userDao.modifyUser(user);
+        if(status>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    @Transactional(readOnly = false, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
+    public Boolean deleteUser(int id){
+        int status=userDao.deleteUser(id);
+        if(status>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    @Transactional(readOnly = false, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
+    public void deleteUserArr(String[] arr){
+        userDao.deleteUserArr(arr);
+    }
+    @Transactional(readOnly = true, rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED,timeout = 3)
+    public User getUserById(int id){
+        return userDao.selectUserById(id);
     }
 }

@@ -48,7 +48,10 @@ public class User {
         this.realname = realname;
         this.pwd = pwd;
     }
-
+    public User(String name, String pwd) {
+        this.name = name;
+        this.pwd = pwd;
+    }
     public User(int id, String name, String realname, String pwd) {
         this.id = id;
         this.name = name;

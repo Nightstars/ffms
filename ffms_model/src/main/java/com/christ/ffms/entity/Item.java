@@ -10,6 +10,25 @@ public class Item {
     private int id;
     private int type;
     private String name;
+
+    public String getpName() {
+        return pName;
+    }
+
+    public void setpName(String pName) {
+        this.pName = pName;
+    }
+
+    private String pName;
+    public int getPId() {
+        return PId;
+    }
+
+    public void setPId(int PId) {
+        this.PId = PId;
+    }
+
+    private int PId;
     private Item pItem;
     private List<Item> items=new ArrayList<Item>();
 
@@ -55,6 +74,16 @@ public class Item {
     public Item(){
 
     }
+
+    public Item(int id, int type, String name, int PId, Item pItem, List<Item> items) {
+        this.id = id;
+        this.type = type;
+        this.name = name;
+        this.PId = PId;
+        this.pItem = pItem;
+        this.items = items;
+    }
+
     public Item(int id, int type, String name, Item pItem, List<Item> items) {
         this.id = id;
         this.type = type;
@@ -69,6 +98,7 @@ public class Item {
                 "id=" + id +
                 ", type=" + type +
                 ", name='" + name + '\'' +
+                ", PId=" + PId +
                 ", pItem=" + pItem +
                 ", items=" + items +
                 '}'+"\n";

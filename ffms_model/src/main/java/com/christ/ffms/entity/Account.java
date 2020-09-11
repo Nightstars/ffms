@@ -1,6 +1,7 @@
 package com.christ.ffms.entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.util.Date;
 @Component
 public class Account {
     private int id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private BigDecimal amount;
     private String remark;
@@ -83,6 +85,8 @@ public class Account {
                 ", date=" + date +
                 ", amount=" + amount +
                 ", remark='" + remark + '\'' +
-                '}'+"\n";
+                ", user=" + user +
+                ", item=" + item +
+                '}';
     }
 }

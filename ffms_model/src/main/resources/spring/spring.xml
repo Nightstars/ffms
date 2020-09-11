@@ -40,6 +40,14 @@
 		<property name="sqlSessionFactory" ref="msqlSessionFactory"></property>
 		<property name="mapperInterface" value="com.christ.ffms.dao.UserDao"></property>
 	</bean>
+	<bean id="itemDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="msqlSessionFactory"></property>
+		<property name="mapperInterface" value="com.christ.ffms.dao.ItemDao"></property>
+	</bean>
+	<bean id="accountDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="msqlSessionFactory"></property>
+		<property name="mapperInterface" value="com.christ.ffms.dao.AccountDao"></property>
+	</bean>
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>

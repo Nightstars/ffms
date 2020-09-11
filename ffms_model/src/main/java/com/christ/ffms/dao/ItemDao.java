@@ -7,12 +7,15 @@ import java.util.List;
 
 @Repository
 public interface ItemDao {
-    /*void saveItem(Item item);
-    void updateItem(Item item);
-    void deleteItem(int id);
-    void deleteItems(String [] ids);*/
+    public void saveCItem(Item item);
+    public void savePItem(Item item);
+    public void deletePItem(Item item);
+    public void deletePItems(String[] arr);
+    public void deleteCItem(Item item);
+    public void deleteCItems(String[] arr);
+    public void updateItem(Item item);
     Item getItemByPK(int id);
-    /*List<Item> getAllItem();
-    List<Item> getParentItemByType(int type);
-    List<Item> getChileItemByParentId(int id);*/
+    List<Item> getAllItem();
+    public List<Item> getPitemById(Integer id);
+    public List<Item> getPitems();
 }

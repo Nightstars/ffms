@@ -12,5 +12,6 @@
 </head>
 <body>
 <h2>${users}</h2>
+<img src="${pageContext.request.contextPath}/images/login_10.gif">
 </body>
 </html>
